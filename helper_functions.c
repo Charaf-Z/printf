@@ -33,25 +33,19 @@ int put_string(const char *s)
 }
 
 /**
- * _strstr - Locates a substring in a string.
- * @haystack: The string to search in.
- * @needle: The substring to find.
- * Return: A pointer to the beginning of the found substring,
- *        or NULL if the substring is not found.
+ * is_flag - Check if a given character is inside the given string.
+ * @c: The character to check for.
+ * @string: The string to search in.
+ * Return: 1 if the character is found, 0 otherwise.
  */
-const char *_strstr(const char *haystack, const char *needle)
+int is_flag(char c, const char *string)
 {
-	int i, j;
-
-	for (i = 0; haystack[i] != '\0'; i++)
-	{
-		for (j = 0; haystack[i + j] &&
-					needle[j] && haystack[i + j] == needle[j]; j++)
-			;
-		if (!needle[j])
-			return (&haystack[i]);
-	}
-	return (NULL);
+	if (string == NULL)
+		return (0);
+	while (*string)
+		if (c == *string++)
+			return (1);
+	return (0);
 }
 
 /**

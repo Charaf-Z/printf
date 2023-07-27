@@ -66,7 +66,7 @@ typedef struct specifier
 /* helper_function.c */
 int put_char(int c);
 int put_string(const char *s);
-const char *_strstr(const char *haystack, const char *needle);
+int is_flag(char c, const char *string);
 int _strlen(char *s);
 
 /* parse_functions.c file */
