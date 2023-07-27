@@ -29,9 +29,8 @@ const char *parse_flags(const char *p_flag, params_t *params)
 		default:
 			return (p_flag);
 	}
-
-	if (!_strstr(++p_flag, "+- #0"))
-		parse_flags(p_flag, params);
+	if (is_flag(*++p_flag, "+- #0"))
+		parse_flags(p_flag++, params);
 	return (p_flag);
 }
 
