@@ -3,7 +3,6 @@
 /**
  * _printf - Custom printf function that formats and prints output.
  * @format: A pointer to a string containing format specifiers.
- * @...: list of arguments to print it
  * Return: The number of characters printed.
  */
 int _printf(const char *format, ...)
@@ -29,13 +28,9 @@ int _printf(const char *format, ...)
 		str++;
 		str = parse_flags(str, &params);
 		str = parse_width(str, &params, args_p);
-		if (*--str == '*')
-			va_arg(args_p, int);
-		str++;
+		(*--str == '*') ? va_arg(args_p, int) : 0, str++;
 		str = parse_precision(str, &params, args_p);
-		if (*--str == '*')
-			va_arg(args_p, int);
-		str++;
+		(*--str == '*') ? va_arg(args_p, int) : 0, str++;
 		str = parse_length_modifier(str, &params);
 		if (!get_specifier(str))
 			nbr_char += print_to(start, str,
@@ -43,11 +38,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			nbr_char += make_print(str, args_p, &params);
-			if (*str != '%')
-				va_arg(args_p, int);
+			(*str != '%') ? va_arg(args_p, int) : 0;
 		}
 	}
-	put_char(EOF);
-	va_end(args_p);
+	put_char(EOF), va_end(args_p);
 	return (nbr_char);
 }
