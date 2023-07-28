@@ -43,7 +43,7 @@ int left_shift_number(char *s, params_t *params)
 	if (!neg && !params->is_unsign)
 	{
 		if (params->plus_flag)
-			*-s == '+', str_len++;
+			*--s = '+', str_len++;
 		else if (params->space_flag)
 			*--s = ' ', str_len++;
 	}
