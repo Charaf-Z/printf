@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 		str = parse_width(str, &params, args_p);
 		(*--str == '*') ? va_arg(args_p, int) : 0, str++;
 		str = parse_precision(str, &params, args_p);
-		(*--str == '*') ? va_arg(args_p, int) : 0, str++;
+		(*--str == '*' && params.precision != UINT_MAX) ? va_arg(args_p, int) : 0, str++;
 		str = parse_length_modifier(str, &params);
 		if (!get_specifier(str))
 			nbr_char += print_to(start, str,
