@@ -40,14 +40,12 @@ int left_shift_number(char *s, params_t *params)
 
 	if (neg && str_len < params->width && padding_char == 48)
 		s++;
-	else
-		neg = 0;
 	if (!neg && !params->is_unsign)
 	{
 		if (params->plus_flag)
-			len += putchar('+'), str_len++;
+			*-s == '+', str_len++;
 		else if (params->space_flag)
-			len += putchar(' '), str_len++;
+			*--s = ' ', str_len++;
 	}
 
 	len += put_string(s);
