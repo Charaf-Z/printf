@@ -7,12 +7,12 @@
  * @flags: Flags to control conversion behavior.
  * Return: A pointer to the string representation of the converted number.
  */
-char *convert_to(long long int nbr, int base, int flags)
+char *convert_to(long int nbr, int base, int flags)
 {
 	static char buffer[50];
 	char *p_nbr = &buffer[49];
 	static char *array;
-	unsigned long long n = (nbr < 0 && !(flags & TO_UNSIGNED)) ? -nbr : nbr;
+	unsigned long n = (nbr < 0 && !(flags & TO_UNSIGNED)) ? -nbr : nbr;
 
 	*p_nbr = '\0';
 	array = (flags & TO_LOWER) ? "0123456789abcdef" : "0123456789ABCDEF";

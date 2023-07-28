@@ -30,15 +30,30 @@ int print_unsigned(va_list args, params_t *params)
  */
 int print_address(va_list args, params_t *params)
 {
-	unsigned long long int digit;
-	int len = 0;
+	uintptr_t digit;
+	uint8_t byte;
+	int len = 0, i = 7, upper_nibble, lower_nibble;
 	va_list args_copy;
+	char buffer[50];
+	char *p_nbr = &buffer[49];
+	static char *array;
 
+	array = "0123456789abcdef";
+	*p_nbr = '\0';
 	va_copy(args_copy, args);
-	digit = va_arg(args_copy, unsigned long long);
+	digit = va_arg(args_copy, uintptr_t);
 	if (!digit)
 		return (put_string("(nil)"));
 	len += put_string("0x"), params->width ? params->width -= 2 : 0;
-	return (len += print_number(convert_to(digit, 16,
-					TO_LOWER | TO_UNSIGNED), params));
+	do {
+		byte = digit & 0xFF;
+		upper_nibble = (byte >> 4) & 0xF;
+		lower_nibble = byte & 0xF;
+		*--p_nbr = array[lower_nibble];
+		*--p_nbr = array[upper_nibble];
+		digit >>= 8;
+	} while (i-- > 0);
+	while (*++p_nbr == 48)
+		;
+	return (len += print_number(p_nbr, params));
 }
