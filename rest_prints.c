@@ -44,7 +44,6 @@ int print_address(va_list args, params_t *params)
 	digit = va_arg(args_copy, uintptr_t);
 	if (!digit)
 		return (put_string("(nil)"));
-	len += put_string("0x"), params->width ? params->width -= 2 : 0;
 	do {
 		byte = digit & 0xFF;
 		upper_nibble = (byte >> 4) & 0xF;
@@ -55,5 +54,7 @@ int print_address(va_list args, params_t *params)
 	} while (i-- > 0);
 	while (*p_nbr == 48)
 		p_nbr++;
+	*--p_nbr = 'x';
+	*--p_nbr = '0';
 	return (len += print_number(p_nbr, params));
 }
