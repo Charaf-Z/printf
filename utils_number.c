@@ -70,11 +70,7 @@ int right_shift_number(char *s, params_t *params)
 	char padding_char = params->zero_flag ? 48 : ' ';
 
 	if (neg && padding_char == 48)
-	{
 		len += put_char('-'), s++;
-		if (str_len < params->width)
-			s++;
-	}
 	if (!neg && (params->plus_flag || (!params->plus_flag && params->space_flag)))
 		str_len++;
 	if (!neg && !params->is_unsign && padding_char == 48)
