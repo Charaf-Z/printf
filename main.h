@@ -82,7 +82,7 @@ int (*get_specifier(const char *p_specifier))(va_list args, params_t *params);
 void params_init_default(params_t *params);
 
 /* utils_number.c */
-char *convert_to(long int nbr, int base, int flags);
+char *convert_to(long long int nbr, int base, int flags);
 int left_shift_number(char *s, params_t *params);
 int right_shift_number(char *s, params_t *params);
 int print_number(char *s, params_t *params);
