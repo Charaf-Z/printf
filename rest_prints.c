@@ -53,8 +53,7 @@ int print_address(va_list args, params_t *params)
 		*--p_nbr = array[upper_nibble];
 		digit >>= 8;
 	} while (i-- > 0);
-	while (*++p_nbr == 48)
-		;
-	p_nbr--;
+	while (*p_nbr == 48)
+		p_nbr++;
 	return (len += print_number(p_nbr, params));
 }
