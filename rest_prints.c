@@ -30,7 +30,7 @@ int print_unsigned(va_list args, params_t *params)
  */
 int print_address(va_list args, params_t *params)
 {
-	unsigned long int digit;
+	unsigned long long int digit;
 	int len = 0;
 	va_list args_copy;
 
