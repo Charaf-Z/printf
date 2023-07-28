@@ -71,7 +71,7 @@ int right_shift_number(char *s, params_t *params)
 
 	if (neg && padding_char == 48)
 	{
-		len += put_char('-');
+		len += put_char('-'), s++;
 		if (str_len < params->width)
 			s++;
 	}
