@@ -35,7 +35,7 @@ int print_address(va_list args, params_t *params)
 	va_list args_copy;
 
 	va_copy(args_copy, args);
-	digit = va_arg(args_copy, unsigned long long int);
+	digit = va_arg(args_copy, unsigned long long);
 	if (!digit)
 		return (put_string("(nil)"));
 	len += put_string("0x"), params->width ? params->width -= 2 : 0;
